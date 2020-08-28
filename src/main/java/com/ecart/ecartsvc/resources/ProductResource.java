@@ -20,6 +20,13 @@ public class ProductResource {
 	@Inject
 	ProductService productservice;
 	
+	
+	/**
+	 * 1. Get the list of all the products across all the categories
+	 * 2. Get the available stock details across products. This should consider the dummy orders placed and return stocks accordingly. 
+	 * 
+	 * @return
+	 */
 	@GET
 	@Path("/products")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -30,6 +37,13 @@ public class ProductResource {
 		return products;
 	}
 	
+	
+	/**
+	 * Get the list of all the products by category or of a price less than or greater than a specified price for that product
+	 * @param category
+	 * @param price
+	 * @return
+	 */
 	@GET
 	@Path("/products-by-category")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -40,6 +54,13 @@ public class ProductResource {
 		return products;
 	}
 	
+	
+	/**
+	 * Get the list of all the products by company or of a price less than or greater than a specified price for that company
+	 * @param company
+	 * @param price
+	 * @return
+	 */
 	@GET
 	@Path("/products-by-company")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -50,6 +71,11 @@ public class ProductResource {
 		return products;
 	}
 	
+	/**
+	 * Get the discounted price of all the products by category
+	 * @param category
+	 * @return
+	 */
 	@GET
 	@Path("/discount-products")
 	@Produces(MediaType.APPLICATION_JSON)

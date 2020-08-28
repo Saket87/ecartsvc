@@ -32,6 +32,10 @@ public class OrderResource {
 	@Inject
 	ProductService productservice;
 	
+	/**
+	 * Retrieve orders
+	 * @return
+	 */
 	@GET
 	@Path("/orders")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -40,7 +44,11 @@ public class OrderResource {
 		return orderservice.retrieveOrders();
 	}
 	
-	
+	/**
+	 * Place a dummy order. Order placement should fail if the stock = number of dummy orders 
+	 * @param order
+	 * @param product
+	 */
 	@POST
 	@Path("/orders")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -72,7 +80,11 @@ public class OrderResource {
 		return Response.status(Status.CREATED).build();
 	}
 	
-
+	/**
+	 * Delete the dummy order(s)
+	 * @param order
+	 * @param product
+	 */
 	@DELETE
 	@Path("/orders/{orderid}")
 	@Transaction(TransactionIsolationLevel.READ_COMMITTED)
