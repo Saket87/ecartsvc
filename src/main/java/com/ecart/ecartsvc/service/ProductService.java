@@ -33,9 +33,20 @@ public class ProductService{
 	 */
 	public List<Product> retrieveProductByCategory(String category, BigDecimal price) {
 			
-		List<Product> products =  JdbiConfig.getJdbi().withExtension(ProductDao.class, dao -> {
-            return dao.listProductsByCategory(category, price);
-			});
+		List<Product> products;
+				
+		if(null==price) {
+			
+			products =  JdbiConfig.getJdbi().withExtension(ProductDao.class, dao -> {
+	            return dao.listProductsByCategory(category);
+				});
+		}else {
+			
+			products =  JdbiConfig.getJdbi().withExtension(ProductDao.class, dao -> {
+	            return dao.listProductsByCategory(category, price);
+				});
+		}
+ 
         
 		return products;
 	}
@@ -48,9 +59,20 @@ public class ProductService{
 	 */
 	public List<Product> retrieveProductByCompany(String company, BigDecimal price) {
 			
-		List<Product> products =  JdbiConfig.getJdbi().withExtension(ProductDao.class, dao -> {
-            return dao.listProductsByCompany(company, price);
-			});
+		List<Product> products;
+		
+		if(null==price) {
+			
+			products = JdbiConfig.getJdbi().withExtension(ProductDao.class, dao -> {
+	            return dao.listProductsByCompany(company);
+				});
+		}else {
+			
+			products = JdbiConfig.getJdbi().withExtension(ProductDao.class, dao -> {
+	            return dao.listProductsByCompany(company, price);
+				});
+			
+		}
         
 		return products;
 	}
