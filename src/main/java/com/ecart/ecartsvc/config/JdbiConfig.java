@@ -3,6 +3,7 @@ package com.ecart.ecartsvc.config;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
@@ -18,7 +19,7 @@ import com.opentable.db.postgres.embedded.EmbeddedPostgres;
 
 public class JdbiConfig {
 	
-	Logger log;
+	private static final Logger LOGGER = Logger.getLogger( JdbiConfig.class.getName() );
 
     private static final String POSTGRES_DB_NAME = "postgres", POSTGRES_USER = "postgres";
     
@@ -30,7 +31,8 @@ public class JdbiConfig {
     static {
 		try {
 
-			System.out.println("*********************First Time Initialization of Postgres has started ***********************");
+			LOGGER.log(Level.INFO, "*********************First Time Initialization of Postgres has started ***********************");
+			
 			EmbeddedPostgres embeddedPostgres = EmbeddedPostgres.start();
 
 			DataSource defaultDataSource = embeddedPostgres.getDatabase(POSTGRES_USER, POSTGRES_DB_NAME);
@@ -62,14 +64,14 @@ public class JdbiConfig {
             });
 			
 			
-			System.out.println("*********************First Time Initialization of Postgres has ended***********************");
+			LOGGER.log(Level.INFO, "*********************First Time Initialization of Postgres has ended***********************");
 			
-			System.out.println("*********************Created below records in Product table***********************");
+			LOGGER.log(Level.INFO, "*********************Created below records in Product table***********************");
 			
 			System.out.println(products);
 			
 			
-			System.out.println("*********************Second Time Initialization of Postgres has started ***********************");
+			LOGGER.log(Level.INFO, "*********************Second Time Initialization of Postgres has started ***********************");
 			
 
 			DataSource defaultDataSource1 = embeddedPostgres.getDatabase(POSTGRES_USER, POSTGRES_DB_NAME);
@@ -85,11 +87,11 @@ public class JdbiConfig {
 
 			
 			
-			System.out.println("*********************Second Time Initialization of Postgres has ended***********************");
+			LOGGER.log(Level.INFO, "*********************Second Time Initialization of Postgres has ended***********************");
 			
-			System.out.println("*********************Fetched below records from Product table***********************");
+			LOGGER.log(Level.INFO, "*********************Fetched below records from Product table***********************");
 			
-			System.out.println(products1);
+			LOGGER.log(Level.INFO, products1.toString());
 			
 			
 		} catch (Exception error) {
